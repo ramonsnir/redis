@@ -207,11 +207,16 @@ distclean: clean
 
 .PHONY: distclean
 
-test: $(REDIS_SERVER_NAME) $(REDIS_CHECK_AOF_NAME)
+test: test-core test-sentinel test-cluster
+
+test-core: $(REDIS_SERVER_NAME) $(REDIS_CHECK_AOF_NAME)
 	@(cd ..; ./runtest)
 
 test-sentinel: $(REDIS_SENTINEL_NAME)
 	@(cd ..; ./runtest-sentinel)
+
+test-cluster: $(REDIS_SERVER_NAME)
+	@(cd ..; ./runtest-cluster)
 
 check: test
 

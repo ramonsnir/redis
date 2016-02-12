@@ -1,0 +1,4 @@
+language: c
+sudo: true
+install: gem install redis && sudo apt-get install -y tcl
+script: make && make test
